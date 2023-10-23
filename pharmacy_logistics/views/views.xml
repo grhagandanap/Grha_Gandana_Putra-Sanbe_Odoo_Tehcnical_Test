@@ -1,0 +1,146 @@
+<odoo>
+  <data>
+
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="pharmacy_logistics_tree">
+      <field name="name">pharmacy.logistics.tree</field>
+      <field name="model">pharmacy.logistics</field>
+      <field name="arch" type="xml">
+        <tree string="Logistic Records">
+          <field name="name"/>
+          <field name="product"/>
+          <field name="supplier"/>
+          <field name="quantity"/>
+          <field name="arrival_date"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="pharmacy_logistics_form">
+      <field name="name">pharmacy.logistics.form</field>
+      <field name="model">pharmacy.logistics</field>
+      <field name="arch" type="xml">
+        <form string="Input Logistics">
+
+          <header>
+            <button name="action_import_csv" string="Import CSV" type="object" />
+          </header>
+
+          <div name="container" class="container">
+            <div name="data" class="row">
+              <div name="background" class="p-5 bg-white shadow-sm rounded mb-5" style="width:100%; max-width:100%;">
+                <div name="logistics" class="row">
+                  <table class="table table-bordered">
+                    <tr class="text-center">
+                      <th scope="col" colspan="12">Input Logistics</th>
+                    </tr>
+                    <tr class="text-left">
+                      <td colspan="6">Name</td>
+                      <td colspan="6">
+                        <field name ="name"/>
+                      </td>
+                    </tr>
+                    <tr class="text-left">
+                      <td colspan="6">Product</td>
+                      <td colspan="6">
+                        <field name ="product"/>
+                      </td>
+                    </tr>
+                    <tr class="text-left">
+                      <td colspan="6">Supplier</td>
+                      <td colspan="6">
+                        <field name ="supplier"/>
+                      </td>
+                    </tr>
+                    <tr class="text-left">
+                      <td colspan="6">Quantity</td>
+                      <td colspan="6">
+                        <field name ="quantity"/>
+                      </td>
+                    </tr>
+                    <tr class="text-left">
+                      <td colspan="6">Arrival Date</td>
+                      <td colspan="6">
+                        <field name ="arrival_date"/>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </field>
+    </record>
+
+    <record id="pharmacy_logistics_search" model="ir.ui.view">
+      <field name="name">pharmacy.logistics.search</field>
+      <field name="model">pharmacy.logistics</field>
+      <field name="arch" type="xml">
+        <search string="Logistics Record">
+          <field name="product" select="true"/>
+          <field name="arrival_date" select="true"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="pharmacy_logistics_action">
+      <field name="name">Pharmacy Logistics</field>
+      <field name="res_model">pharmacy.logistics</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="pharmacy_logistics_tree"/>
+    </record>
+
+    <!-- <record id="record_pharmacy_logistics_action_form" model="ir.actions.act_window.view">
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="pharmacy_logistics_form"/>
+      <field name="act_window_id" ref="pharmacy_logistics_action"/>
+    </record>
+
+    <record id="pharmacy_logistics_action_tree" model="ir.actions.act_window.view">
+      <field eval="1" name="sequence"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="pharmacy_logistics_tree"/>
+      <field name="act_window_id" ref="pharmacy_logistics_action"/>
+    </record> -->
+
+    <menuitem name="Pharmacy Logistics" id="pharmacy_logistics_menu" web_icon="pharmacy_logistics,static/pharmacy_logistics.png" sequence="1"/>
+    <menuitem id="pharmacy_logistics" name="Logistics" parent="pharmacy_logistics_menu" sequence="1"/>
+    <menuitem name="List" id="tes" parent="pharmacy_logistics" action="pharmacy_logistics_action"/>
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="pharmacy_logistics.action_server">
+      <field name="name">pharmacy_logistics server</field>
+      <field name="model_id" ref="model_pharmacy_logistics_pharmacy_logistics"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="pharmacy_logistics" id="pharmacy_logistics.menu_root"/>
+-->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="pharmacy_logistics.menu_1" parent="pharmacy_logistics.menu_root"/>
+    <menuitem name="Menu 2" id="pharmacy_logistics.menu_2" parent="pharmacy_logistics.menu_root"/>
+-->
+    <!-- actions -->
+
+    
+    <!-- <menuitem name="Server to list" id="pharmacy_logistics" parent="pharmacy_logistics.menu_2" action="pharmacy_logistics.action_server"/> -->
+
+  </data>
+</odoo>
